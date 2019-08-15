@@ -3,7 +3,8 @@ import { createReducer } from 'redux-act'
 import { 
   addMarker,
   updateMarkersList,
-  removeMarker
+  removeMarker,
+  saveMapParams
 } from 'modules/App/actions'
 
 const initialState = {
@@ -42,6 +43,10 @@ export default createReducer(
     [updateMarkersList]: (state, payload) => ({
       ...state,
       markersList: payload,
+    }),
+    [saveMapParams]: (state, payload) => ({
+      ...state,
+      mapParams: { ...state.mapParams, center: payload },
     }),
     [addMarker]: (state, payload) => {
       const newMarker = {

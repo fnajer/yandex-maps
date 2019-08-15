@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { YMaps, Map, Placemark, Polyline } from "react-yandex-maps";
 
-import { updateMarkersList } from 'modules/App/actions'
+import { updateMarkersList, saveMapParams } from 'modules/App/actions'
 
 class YandexMap extends React.Component {
 
@@ -34,6 +34,11 @@ class YandexMap extends React.Component {
     return polyline;
   }
 
+  onBoundsChange = () => {
+    console.log(this.mapRef)
+    if(this.mapRef) this.props.saveMapParams(this.mapRef.getCenter())
+  };
+
   render() {
     const { listMarkers, mapParams } = this.props;
 
@@ -43,6 +48,8 @@ class YandexMap extends React.Component {
           state={mapParams}
           width="400px"
           height="400px"
+          instanceRef={mapParams => this.mapRef = mapParams}
+          onBoundsChange={this.onBoundsChange}
         >
           {
             listMarkers.map(marker => (
@@ -81,4 +88,5 @@ export default connect(state => ({
   mapParams: state.mapParams
 }), ({
   updateMarkersList,
+  saveMapParams
 }))(YandexMap);
