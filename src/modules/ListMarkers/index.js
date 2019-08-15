@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { ListGroup } from 'react-bootstrap'
 
 import { updateMarkersList } from 'modules/App/actions'
 
-import ItemList from '../ItemList';
+import ItemList from '../ListItem';
 
 class ListMarkers extends PureComponent {
   getListStyle = isDraggingOver => ({
@@ -39,8 +40,8 @@ class ListMarkers extends PureComponent {
         <Droppable droppableId="droppable">
           {
             (provided, snapshot) => (
-              <ul 
-                className="list-group"
+              <ListGroup
+                as="ul"
                 ref={provided.innerRef}
                 style={this.getListStyle(snapshot.isDraggingOver)}
               >
@@ -54,7 +55,7 @@ class ListMarkers extends PureComponent {
                   ))
                 }
                 {provided.placeholder}
-              </ul>
+              </ListGroup>
             )
           }
         </Droppable>

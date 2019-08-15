@@ -10,11 +10,11 @@ class App extends React.Component {
     return (
       <Container as="main">
         <Row as="section" className="justify-content-center">
-          <Col xs={12} md={5} className="ml-auto mr-auto mb-3">
+          <Col xs={5} className="ml-auto mr-auto mb-3">
             <MarkerInput />
             <ListMarkers />
           </Col>
-          <Col xs={12} md={7} className="d-flex justify-content-center">
+          <Col xs={7} className="d-flex justify-content-center">
             <Map />
           </Col>
         </Row>

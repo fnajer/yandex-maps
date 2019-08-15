@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import { Draggable } from 'react-beautiful-dnd';
+import { Button, ListGroup } from 'react-bootstrap'
 
 import { removeMarker } from 'modules/App/actions'
 
@@ -20,8 +21,9 @@ class ItemList extends React.Component {
       <Draggable draggableId={`${marker.id}`} index={index}>
         {
           (provided, snapshot) => (
-            <li
-              className="d-flex list-group-item list-group-item-dark justify-content-between align-items-center"
+            <ListGroup.Item
+              as="li"
+              className="d-flex justify-content-between align-items-center"
               ref={provided.innerRef}
               {...provided.draggableProps}
               {...provided.dragHandleProps}
@@ -33,12 +35,14 @@ class ItemList extends React.Component {
               }
             >
               Point of routes {marker.id}
-
-              <button
+              <Button 
+                variant="primary" 
                 className="badge badge-primary badge-pill"
                 onClick={() => this.props.removeMarker(marker.id)}
-              >X</button>
-            </li>
+              >
+                X
+              </Button>
+            </ListGroup.Item>
           )
         }
       </Draggable>
