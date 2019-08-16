@@ -18,7 +18,7 @@ class ItemList extends React.Component {
     const { marker, index } = this.props;
     
     return (
-      <Draggable draggableId={`${marker.id}`} index={index}>
+      <Draggable draggableId={marker.id} index={index}>
         {
           (provided, snapshot) => (
             <ListGroup.Item
@@ -34,7 +34,7 @@ class ItemList extends React.Component {
                 )
               }
             >
-              Point of routes {marker.id}
+              {marker.name}
               <Button 
                 variant="primary" 
                 className="badge badge-primary badge-pill"

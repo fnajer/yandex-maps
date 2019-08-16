@@ -14,7 +14,7 @@ class YandexMap extends React.Component {
     listMarkers.some((marker, index) => {
       if (marker.id === id) {
         listMarkers.splice(index, 1, {
-          id: id,
+          ...marker,
           coordinates: newCords,
         });
 
@@ -35,7 +35,6 @@ class YandexMap extends React.Component {
   }
 
   onBoundsChange = () => {
-    console.log(this.mapRef)
     if(this.mapRef) this.props.saveMapParams(this.mapRef.getCenter())
   };
 
@@ -57,8 +56,8 @@ class YandexMap extends React.Component {
                 key={marker.id}
                 geometry={{ coordinates: marker.coordinates }}
                 properties={{
-                  hintContent: `#${marker.id}`,
-                  balloonContent: `Beautiful marker #${marker.id}`,
+                  hintContent: marker.name,
+                  balloonContent: marker.description,
                 }}
                 options={{
                   draggable: true,
